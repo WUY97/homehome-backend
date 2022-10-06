@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ('SECRET_KEY')
+SECRET_KEY = 'django-insecure-+a@0%#7=)ou2n*-@)nocn!uiqbog+a_w0t5awo4-m4$*i)$=$b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -172,8 +172,9 @@ DJOSER = {
 import django_heroku
 django_heroku.settings(locals())
 
-import dj-database-url
-prod_db=dj-database-url.config(conn_max_age=500)
+import dj_database_url
+prod_db=dj_database_url.config(conn_max_age=500)
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 DATABASES['default'].update(prod_db)
 
 try:
